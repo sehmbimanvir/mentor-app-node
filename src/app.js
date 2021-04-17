@@ -1,15 +1,22 @@
 import express from 'express'
 import { APIRoutes } from './routes'
-import mongoose from 'mongoose'
+import mongoose, { mongo } from 'mongoose'
 import cors from 'cors'
 import { validationError } from './middlewares/error.middleware'
 import { errorResponse, successResponse } from './middlewares/response.middleware'
 import 'dotenv/config'
 
-const { MONGO_PORT, MONGO_DB, MONGO_HOST } = process.env
+const {
+  MONGO_PORT,
+  MONGO_DB,
+  MONGO_HOST,
+  MONGO_USER,
+  MONGO_PASSWORD
+} = process.env
 
+const mongoURI = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DB}?retryWrites=true&w=majority`
 
-mongoose.connect(`mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`, {
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
