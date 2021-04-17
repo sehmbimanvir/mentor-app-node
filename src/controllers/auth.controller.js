@@ -14,7 +14,7 @@ const login = async (req, res) => {
       return res.error('Invalid User', 401)
     }
     const token = sign({ sub: user._id, }, JWT_SECRET, { expiresIn: JWT_EXPIRY })
-    res.success('Logged In Successfully', { ...user, token })
+    res.success('Logged In Successfully', { token })
   } catch (err) {
     res.error('Something went wrong..', 422, err)
   }
