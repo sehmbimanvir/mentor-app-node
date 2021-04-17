@@ -1,6 +1,6 @@
 import express from 'express'
 import { APIRoutes } from './routes'
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 import cors from 'cors'
 import { validationError } from './middlewares/error.middleware'
 import { errorResponse, successResponse } from './middlewares/response.middleware'
