@@ -1,0 +1,8 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "[javascript]": {
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "nodejs_url_shortner",
+  "version": "1.0.0",
+  "description": "A URL shortner in Node.JS",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel -d ./build ./src",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "start": "npm run build && npm run seed && node ./build/app.js",
+    "seed": "babel-node src/seed.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto-random-string": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validation": "^3.0.8",
+    "from": "^0.1.7",
+    "import": "^0.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.0",
+    "validate": "^5.1.0"
+  }
+}

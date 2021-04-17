@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  webapp-server:
+    build: .
+    image: mentor-app-server
+    container_name: mentor-app-be-server
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+  mongo:
+    image: mongo
+    container_name: mentor-app-mongo
+    volumes:
+      - ~/url-shortner/mongo:/data/db/
+    ports:
+      - "27017:27017"
