@@ -27,6 +27,12 @@ const createUser = async () => {
     password: 'secret'
   }
   try {
+
+    /** Delete if Already Exists */
+    const { email } = defaultCredentials
+    await User.findOneAndDelete({ email })
+
+    /** Add User */
     let user = new User(defaultCredentials)
     await user.save()
     console.log('Default User Created Successfully ✅')

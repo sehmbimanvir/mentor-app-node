@@ -1,16 +1,17 @@
 import User from "../models/user.model"
 import { sign } from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 
 const login = async (req, res) => {
   const { JWT_SECRET, JWT_EXPIRY } = process.env
   try {
     const { email, password } = req.body
-    const user = await User.findOne({ email, password }, {
-      passowrd: 0,
-      createdAt: 0,
-      updatedAt: 0
-    }).lean()
-    if (!user) {
+    const user = await User.findOne({ email }).select({
+      password: 1,
+      _id: 1
+    })
+
+    if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.error('Invalid User', 401)
     }
     const token = sign({ sub: user._id, }, JWT_SECRET, { expiresIn: JWT_EXPIRY })
