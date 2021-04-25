@@ -1,7 +1,10 @@
 import express from 'express'
-import { APIRoutes } from './routes'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import morgan from 'morgan'
+import { createWriteStream } from 'fs'
+import { join } from 'path'
+import { APIRoutes } from './routes'
 import { validationError } from './middlewares/error.middleware'
 import { errorResponse, successResponse } from './middlewares/response.middleware'
 import 'dotenv/config'
@@ -31,9 +34,15 @@ mongoose.connect(mongoURI, {
     console.log('Error while connecting to MongoDB ❌❌❌', err)
 })
 
+const accessLogStream = createWriteStream(join(__dirname, '../', 'access.log'), { flags: 'a' })
 
 const app = express()
 app.use(cors())
+
+app.use(morgan('combined', {
+  stream: accessLogStream
+}))
+
 app.use(express.json())
 
 app.use(successResponse)

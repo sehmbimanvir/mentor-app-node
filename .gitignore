@@ -2,6 +2,7 @@
 
 #editor config
 .vscode
+access.log
 
 # dependencies
 /node_modules
