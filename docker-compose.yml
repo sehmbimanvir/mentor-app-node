@@ -1,14 +1,13 @@
 version: "3.7"
 services:
-  webapp-server:
+  mentor-app-node:
     build: .
-    image: mentor-app-server
-    container_name: mentor-app-be-server
-    volumes:
-      - .:/app
-      - /app/node_modules
+    container_name: mentor-app-node
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
     ports:
-      - "80:80"
+      - "3001:3001"
     depends_on:
       - mongo
     env_file:
